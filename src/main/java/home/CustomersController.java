@@ -1,9 +1,6 @@
 package home;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +14,19 @@ public class CustomersController {
         customers.add(new Customer("ed", 37));
     }
 
-    @RequestMapping("/list")
+    @GetMapping("/list")
     public List<Customer> list() {
         return customers;
+    }
+
+    @GetMapping("/lookup")
+    public String lookupByParam(@RequestParam String name) {
+        return name;
+    }
+
+    @GetMapping("/lookup/{name}")
+    public String lookup(@PathVariable String name) {
+        return name;
     }
 
     @PostMapping("/add")
